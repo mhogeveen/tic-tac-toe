@@ -1,8 +1,5 @@
-const createBoard = (gridSize: number) => (
-  Array.from(
-    { length: gridSize }, (_, y) => Array.from(
-      { length: gridSize }, (_, x) => ({ x, y, clicked: false, clickedBy: null})
-    )
-  ).flat(1)
-);
+const createBoard = (gridSize: number) => {
+  return Array.from({length: gridSize}, (_, index) => ({index, clicked: false, clickedBy: null}));
+}
+
 export default createBoard;
