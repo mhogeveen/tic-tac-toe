@@ -1,9 +1,12 @@
 import './App.scss';
 
-function App() {
+import Board from './Board';
+
+const App = () => {
   return (
-    <>
-    </>
+    <main className="app">
+      <Board />
+    </main>
   );
 }
 
