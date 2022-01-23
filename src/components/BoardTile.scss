@@ -1,0 +1,38 @@
+.board-tile {
+  aspect-ratio: 1;
+  background-color: var(--clr-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  cursor: pointer;
+  outline: 0.25rem solid transparent;
+  outline-offset: -0.5rem;
+  transition: outline-color 0.2s ease-in-out;
+  font-size: 4rem;
+  color: transparent;
+
+  &:hover {
+    --player-opacity: 0.5;
+    outline-color: var(--clr-acc);
+  }
+
+  &--clicked {
+    --player-opacity: 1;
+    cursor: default;
+
+    &:hover {
+      --player-opacity: 1;
+      outline-color: transparent;
+    }
+  }
+
+  &__player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: var(--player-opacity, 0);
+    color: var(--clr-white);
+    transition: opacity 0.2s ease-in-out;
+  }
+}
