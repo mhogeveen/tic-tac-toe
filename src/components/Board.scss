@@ -1,0 +1,11 @@
+.board {
+  width: 100%;
+
+  &__grid {
+    background-color: var(--clr-white);
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+  }
+}
