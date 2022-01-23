@@ -1,29 +1,24 @@
 import createBoard from '../utils/createBoard';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from './store'
 
-// Define a type for the slice state
-interface BoardTile {
-  x: number;
-  y: number;
+export interface BoardTileInterface {
+  index: number;
   clicked: boolean;
   clickedBy: string | null;
 }
 
-// Define the initial state using that type
-const initialState: BoardTile[] = createBoard(3);
+const initialState: BoardTileInterface[] = createBoard(9);
 
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    
+    updateBoardTile: (state, action: PayloadAction<BoardTileInterface>) => {
+      state[action.payload.index] = action.payload
+    }
   }
 })
 
-export const {  } = boardSlice.actions
-
-// Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.board.values
+export const { updateBoardTile } = boardSlice.actions
 
 export default boardSlice.reducer
