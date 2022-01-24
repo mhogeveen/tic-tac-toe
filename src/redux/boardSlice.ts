@@ -1,4 +1,5 @@
-import createBoard from '../utils/createBoard';
+import createBoard from '../utils/createBoard'
+import hasWon from '../utils/hasWon'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface BoardTileInterface {
@@ -26,6 +27,7 @@ export const boardSlice = createSlice({
     updateAfterClick: (state, action: PayloadAction<BoardTileInterface>) => {
       state.tiles[action.payload.index] = action.payload
       state.player = state.player === 'X' ? 'O' : 'X'
+      state.gameOver = hasWon(state.tiles)
     },
     resetBoard: state => state = initialState
   }

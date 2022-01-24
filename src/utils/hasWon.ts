@@ -37,19 +37,7 @@ const hasWon = (board: BoardTileInterface[]) => {
     }
   })
 
-  if (crossChecker || noughtChecker) {
-    return {
-      gameOver: crossChecker || noughtChecker,
-      victoriousPlayer: crossChecker ? 'X' : 'O',
-      winningIndices
-    }
-  } else {
-    return {
-      gameOver: false,
-      victoriousPlayer: '',
-      winningIndices: []
-    }
-  }
+  return crossChecker || noughtChecker
 }
 
 export default hasWon
