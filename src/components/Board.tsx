@@ -7,32 +7,32 @@ import ResetBoard from './ResetBoard'
 import Container from './Container'
 
 const Board = () => {
-  const board = useAppSelector(state => state.board)
+  const { gameOver, player, tiles } = useAppSelector(state => state.board)
 
   return (
     <section className="board">
       <Container>
         <div className="board__up-next">
-          <span className={`board__icon ${board.player === 'X' && !victoryState.gameOver ? 'board__icon--current' : ''} ${victoryState.victoriousPlayer === 'X' ? 'board__icon--winner' : ''}`}>
+          <span className={`board__icon ${player === 'X' && !gameOver ? 'board__icon--current' : ''} ${player === 'X' && gameOver ? 'board__icon--winner' : ''}`}>
             <MdClose/>
           </span>
-          <span className={`board__icon ${board.player === 'O' && !victoryState.gameOver ? 'board__icon--current' : ''} ${victoryState.victoriousPlayer === 'O' ? 'board__icon--winner' : ''}`}>
+          <span className={`board__icon ${player === 'O' && !gameOver ? 'board__icon--current' : ''} ${player === 'O' && gameOver ? 'board__icon--winner' : ''}`}>
             <MdRadioButtonUnchecked/>
           </span>
         </div>
-        <div className={victoryState.gameOver ? "board__grid board__grid--deactivated" : "board__grid"}>
-          {board.tiles.map(({ index, clicked, clickedBy }) => (
+        <div className={gameOver ? "board__grid board__grid--deactivated" : "board__grid"}>
+          {tiles.map(({ index, clicked, clickedBy }) => (
             <BoardTile
               key={index}
               index={index}
               clicked={clicked}
               clickedBy={clickedBy}
-              player={board.player}
+              player={player}
             />
           ))}
         </div>
         
-        <ResetBoard show={board.gameOver} />
+        <ResetBoard show={gameOver} />
       </Container>
     </section>
   )
