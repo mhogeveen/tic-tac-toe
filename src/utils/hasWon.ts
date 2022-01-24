@@ -12,32 +12,23 @@ const winStates = [
 ]
 
 const hasWon = (board: BoardTileInterface[]) => {
-  let crossTiles: number[] = []
-  let noughtTiles: number[] = []
+  const crossTiles = board.filter(tile => tile.clicked && tile.clickedBy === 'X').map(tile => tile.index)
+  const noughtTiles = board.filter(tile => tile.clicked && tile.clickedBy === 'O').map(tile => tile.index)
 
-  const clickedTiles = board.filter(tile => tile.clicked)
-  
-  clickedTiles.forEach(tile => {
-    if (tile.clickedBy === 'X') {
-      crossTiles = [...crossTiles, tile.index]
-    } else {
-      noughtTiles = [...noughtTiles, tile.index]
-    }
-  })
-
-  let crossChecker = false
-  let noughtChecker = false
   let winningIndices: number[] = []
 
   winStates.forEach(winState => {
-    if (!crossChecker && !noughtChecker) {
-      crossChecker = winState.every(index => crossTiles.includes(index))
-      noughtChecker = winState.every(index => noughtTiles.includes(index))
+    const crossChecker = winState.every(index => crossTiles.includes(index))
+    const noughtChecker = winState.every(index => noughtTiles.includes(index))
+    if ((crossChecker || noughtChecker) && !winningIndices.length) {
       winningIndices = winState
     }
   })
 
-  return crossChecker || noughtChecker
+  return {
+    gameOver: winningIndices.length > 0,
+    winningTiles: winningIndices,
+  }
 }
 
 export default hasWon
