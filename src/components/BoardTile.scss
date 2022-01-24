@@ -27,6 +27,10 @@
     }
   }
 
+  &--winning {
+    outline-color: var(--clr-green);
+  }
+
   &__player {
     display: flex;
     justify-content: center;
