@@ -1,7 +1,6 @@
 import './ResetBoard.scss';
 
 import { resetBoard } from '../redux/boardSlice'
-import { resetPlayer } from '../redux/playerSlice'
 import { useAppDispatch } from '../redux/hooks'
 
 import { MdOutlineReplay } from 'react-icons/md'
@@ -15,7 +14,6 @@ const ResetBoard = ({ show }: ResetBoardProps) => {
 
   const handleResetClick = () => {
     dispatch(resetBoard())
-    dispatch(resetPlayer())
   }
 
   return (

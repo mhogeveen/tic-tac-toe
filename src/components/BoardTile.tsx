@@ -1,6 +1,5 @@
 import './BoardTile.scss'
-import { updateBoardTile } from '../redux/boardSlice'
-import { setNextPlayer } from '../redux/playerSlice'
+import { updateAfterClick } from '../redux/boardSlice'
 import { useAppDispatch } from '../redux/hooks'
 import { MdClose, MdRadioButtonUnchecked } from 'react-icons/md'
 
@@ -16,8 +15,8 @@ const BoardTile = ({ index, clicked, clickedBy, player }: BoardTileProps) => {
 
   const handleTileClick = () => {
     if (!clicked) {
-      dispatch(updateBoardTile({index, clicked: true, clickedBy: player}))
-      dispatch(setNextPlayer())
+      dispatch(updateAfterClick({index, clicked: true, clickedBy: player}))
+      // dispatch(setNextPlayer())
     }
   }
 

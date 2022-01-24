@@ -2,24 +2,35 @@ import createBoard from '../utils/createBoard';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface BoardTileInterface {
-  index: number;
-  clicked: boolean;
-  clickedBy: string | null;
+  index: number
+  clicked: boolean
+  clickedBy: string | null
 }
 
-const initialState: BoardTileInterface[] = createBoard(9);
+interface BoardInterface {
+  gameOver: boolean
+  player: string
+  tiles: BoardTileInterface[]
+}
+
+const initialState: BoardInterface = {
+  gameOver: false,
+  player: 'X',
+  tiles: createBoard(9),
+}
 
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    updateBoardTile: (state, action: PayloadAction<BoardTileInterface>) => {
-      state[action.payload.index] = action.payload
+    updateAfterClick: (state, action: PayloadAction<BoardTileInterface>) => {
+      state.tiles[action.payload.index] = action.payload
+      state.player = state.player === 'X' ? 'O' : 'X'
     },
-    resetBoard: state => state = createBoard(9)
+    resetBoard: state => state = initialState
   }
 })
 
-export const { updateBoardTile, resetBoard } = boardSlice.actions
+export const { updateAfterClick, resetBoard } = boardSlice.actions
 
 export default boardSlice.reducer
