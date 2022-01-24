@@ -9,6 +9,7 @@ export interface BoardTileInterface {
 }
 
 interface BoardInterface {
+  remainingMoves: number
   gameOver: boolean
   winningTiles: number[]
   player: string
@@ -16,6 +17,7 @@ interface BoardInterface {
 }
 
 const initialState: BoardInterface = {
+  remainingMoves: 9,
   gameOver: false,
   winningTiles: [],
   player: 'X',
@@ -29,6 +31,7 @@ export const boardSlice = createSlice({
     updateAfterClick: (state, action: PayloadAction<BoardTileInterface>) => {
       state.tiles[action.payload.index] = action.payload
       state.player = state.player === 'X' ? 'O' : 'X'
+      state.remainingMoves--
 
       const winCondition = hasWon(state.tiles)
       state.gameOver = winCondition.gameOver
