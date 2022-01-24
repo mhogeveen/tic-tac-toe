@@ -31,6 +31,10 @@
     outline-color: var(--clr-green);
   }
 
+  &--tie {
+    outline-color: var(--clr-blue);
+  }
+
   &__player {
     display: flex;
     justify-content: center;
