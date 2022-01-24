@@ -1,11 +1,33 @@
 import './Board.scss'
+import { useEffect, useState } from 'react'
 import { useAppSelector } from '../redux/hooks'
 import { MdClose, MdRadioButtonUnchecked } from 'react-icons/md'
+import hasWon from '../utils/hasWon'
+
 import BoardTile from './BoardTile'
 import ResetBoard from './ResetBoard'
 import Container from './Container'
+
+interface VictoryState {
+  gameOver: boolean
+  victoriousPlayer: string
+  winningIndices: number[]
+}
+
 const Board = () => {
+  const [victoryState, setVictoryState] = useState<VictoryState>({
+    gameOver: false,
+    victoriousPlayer: '',
+    winningIndices: []
+  })
   const boardTiles = useAppSelector(state => state.board)
+  const player = useAppSelector(state => state.player)
+
+  useEffect(() => {
+    setVictoryState(hasWon(boardTiles))
+    console.log(victoryState);
+  }, [boardTiles])
+
   return (
     <section className="board">
       <Container>
