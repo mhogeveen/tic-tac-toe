@@ -32,5 +32,9 @@
     &--winner {
       color: var(--clr-green);
     }
+
+    &--tie {
+      color: var(--clr-blue);
+    }
   }
 }
