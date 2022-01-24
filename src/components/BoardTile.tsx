@@ -9,9 +9,10 @@ interface BoardTileProps {
   clickedBy: string | null
   player: string
   winningTile: boolean
+  tieTile: boolean
 }
 
-const BoardTile = ({ index, clicked, clickedBy, player, winningTile }: BoardTileProps) => {
+const BoardTile = ({ index, clicked, clickedBy, player, winningTile, tieTile }: BoardTileProps) => {
   const dispatch = useAppDispatch()
 
   const handleTileClick = () => {
@@ -27,8 +28,16 @@ const BoardTile = ({ index, clicked, clickedBy, player, winningTile }: BoardTile
     return clickedBy === 'X' ? <MdClose/> : <MdRadioButtonUnchecked/>
   }
 
+  const tileClasses = () => {
+    let classes = 'board-tile'
+    classes += clicked ? ' board-tile--clicked' : ''
+    classes += winningTile ? ' board-tile--winning' : ''
+    classes += tieTile ? ' board-tile--tie' : ''
+    return classes
+  }
+
   return (
-    <div className={`board-tile ${clicked ? 'board-tile--clicked' : ''} ${winningTile ? 'board-tile--winning' : ''}`} onClick={handleTileClick}>
+    <div className={tileClasses()} onClick={handleTileClick}>
       <span className="board-tile__player">{returnPlayerIcon()}</span>
     </div>
   )
