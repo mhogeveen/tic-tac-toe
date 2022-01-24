@@ -16,7 +16,6 @@ const BoardTile = ({ index, clicked, clickedBy, player }: BoardTileProps) => {
   const handleTileClick = () => {
     if (!clicked) {
       dispatch(updateAfterClick({index, clicked: true, clickedBy: player}))
-      // dispatch(setNextPlayer())
     }
   }
 
