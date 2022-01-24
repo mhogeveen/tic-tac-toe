@@ -7,7 +7,7 @@ import ResetBoard from './ResetBoard'
 import Container from './Container'
 
 const Board = () => {
-  const { gameOver, player, tiles } = useAppSelector(state => state.board)
+  const { gameOver, winningTiles, player, tiles } = useAppSelector(state => state.board)
 
   return (
     <section className="board">
@@ -28,6 +28,7 @@ const Board = () => {
               clicked={clicked}
               clickedBy={clickedBy}
               player={player}
+              winningTile={winningTiles.includes(index)}
             />
           ))}
         </div>
