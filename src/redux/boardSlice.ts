@@ -15,10 +15,11 @@ export const boardSlice = createSlice({
   reducers: {
     updateBoardTile: (state, action: PayloadAction<BoardTileInterface>) => {
       state[action.payload.index] = action.payload
-    }
+    },
+    resetBoard: state => state = createBoard(9)
   }
 })
 
-export const { updateBoardTile } = boardSlice.actions
+export const { updateBoardTile, resetBoard } = boardSlice.actions
 
 export default boardSlice.reducer
