@@ -2,6 +2,7 @@ import './Board.scss'
 import { useAppSelector } from '../redux/hooks'
 import { MdClose, MdRadioButtonUnchecked } from 'react-icons/md'
 import BoardTile from './BoardTile'
+import ResetBoard from './ResetBoard'
 import Container from './Container'
 const Board = () => {
   const boardTiles = useAppSelector(state => state.board)
@@ -27,6 +28,8 @@ const Board = () => {
             />
           ))}
         </div>
+        
+        <ResetBoard show={victoryState.gameOver} />
       </Container>
     </section>
   )
