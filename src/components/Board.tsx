@@ -10,18 +10,31 @@ const Board = () => {
   const { gameOver, winningTiles, player, tiles, remainingMoves } = useAppSelector(state => state.board)
   const tie = remainingMoves === 0
 
+  const iconClasses = (type: string) => {
+    let classes = 'board__icon'
+    classes += player === type && !gameOver ? ' board__icon--current' : ''
+    classes += player !== type && gameOver ? ' board__icon--winner' : ''
+    return classes
+  }
+
+  const gridClasses = () => {
+    let classes = 'board__grid'
+    classes += gameOver || tie ? ' board__grid--deactivated' : ''
+    return classes
+  }
+
   return (
     <section className="board">
       <Container>
         <div className="board__up-next">
-          <span className={`board__icon ${player === 'X' && !gameOver ? 'board__icon--current' : ''} ${player === 'O' && gameOver ? 'board__icon--winner' : ''}`}>
+          <span className={iconClasses('X')}>
             <MdClose/>
           </span>
-          <span className={`board__icon ${player === 'O' && !gameOver ? 'board__icon--current' : ''} ${player === 'X' && gameOver ? 'board__icon--winner' : ''}`}>
+          <span className={iconClasses('O')}>
             <MdRadioButtonUnchecked/>
           </span>
         </div>
-        <div className={`board__grid ${gameOver ? 'board__grid--deactivated' : ''}`}>
+        <div className={gridClasses()}>
           {tiles.map(({ index, clicked, clickedBy }) => (
             <BoardTile
               key={index}
