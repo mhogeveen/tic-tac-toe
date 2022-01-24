@@ -8,9 +8,10 @@ interface BoardTileProps {
   clicked: boolean
   clickedBy: string | null
   player: string
+  winningTile: boolean
 }
 
-const BoardTile = ({ index, clicked, clickedBy, player }: BoardTileProps) => {
+const BoardTile = ({ index, clicked, clickedBy, player, winningTile }: BoardTileProps) => {
   const dispatch = useAppDispatch()
 
   const handleTileClick = () => {
@@ -27,7 +28,7 @@ const BoardTile = ({ index, clicked, clickedBy, player }: BoardTileProps) => {
   }
 
   return (
-    <div className={clicked ? "board-tile board-tile--clicked" : "board-tile"} onClick={handleTileClick}>
+    <div className={`board-tile ${clicked ? 'board-tile--clicked' : ''} ${winningTile ? 'board-tile--winning' : ''}`} onClick={handleTileClick}>
       <span className="board-tile__player">{returnPlayerIcon()}</span>
     </div>
   )
