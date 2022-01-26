@@ -12,8 +12,8 @@ const Board = () => {
 
   const iconClasses = (type: string) => {
     let classes = 'board__icon'
-    classes += player === type && !gameOver ? ' board__icon--current' : ''
     classes += player !== type && gameOver ? ' board__icon--winner' : ''
+    classes += player === type && !gameOver ? ' board__icon--current' : ''
     classes += tie ? ' board__icon--tie' : ''
     return classes
   }
