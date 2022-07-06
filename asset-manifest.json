@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tic-tac-toe/static/css/main.d61b178a.css",
+    "main.js": "/tic-tac-toe/static/js/main.c63b5514.js",
+    "index.html": "/tic-tac-toe/index.html",
+    "main.d61b178a.css.map": "/tic-tac-toe/static/css/main.d61b178a.css.map",
+    "main.c63b5514.js.map": "/tic-tac-toe/static/js/main.c63b5514.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d61b178a.css",
+    "static/js/main.c63b5514.js"
+  ]
+}
